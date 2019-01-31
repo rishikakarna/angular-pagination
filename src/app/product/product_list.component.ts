@@ -10,7 +10,7 @@ import { ProductService } from './product_service';
 export class ProductListComponent implements OnInit {
 
   products: Product[];
-  //DI
+  //DI amaar
   constructor(private ps: ProductService) {
   }
 
