@@ -10,6 +10,8 @@ import { ProductService } from './product_service';
 export class ProductListComponent implements OnInit {
 
   products: Product[];
+  currentPosition : number = 1;
+  pageSize : number = 5;
   //DI amaar
   constructor(private ps: ProductService) {
   }
@@ -24,7 +26,28 @@ export class ProductListComponent implements OnInit {
     // this.products = this.ps.retrieveFromServer();
   }
 
-  loadProd(){
-    this.products = this.ps.retrieveFromServer();
+  loadProd() {
+    this.currentPosition += this.pageSize;
+    let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet2?cp='+this.currentPosition;
+    this.ps.retrieveFromServer(url).subscribe(
+      data => {
+        this.products = data;
+      });;
+  }
+  loadnextProd() {
+    this.currentPosition += this.pageSize;
+    let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet2?cp='+this.currentPosition;
+    this.ps.retrieveFromServerNext(url).subscribe(
+      data => {
+        this.products = data;
+      });;
+  }
+  loadprevProd() {
+    this.currentPosition -= this.pageSize;
+    let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet2?cp='+this.currentPosition;
+    this.ps.retrieveFromServerPrev(url).subscribe(
+      data => {
+        this.products = data;
+      });;
   }
 }

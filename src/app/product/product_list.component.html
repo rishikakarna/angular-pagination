@@ -2,6 +2,7 @@
   <div class="panel-heading">{{title}}</div>
   <div class="panel-body">
     <div class="table-responsive">
+        <button (click)="loadProd()">get info</button>
       <table class="table">
         <thead>
           <tr>
@@ -21,7 +22,8 @@
           </tr>
         </tbody>
       </table>
-      <button (click)="loadProd()">click here</button>
+      <button (click)="loadprevProd()">prev</button>
+      <button (click)="loadnextProd()">next</button>
     </div>
   </div>
 </div>

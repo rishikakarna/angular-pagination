@@ -1,7 +1,7 @@
 import { Product } from './product';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { url } from 'inspector';
+import { Observable } from 'rxjs';
 
 @Injectable() //DI
 export class ProductService {
@@ -15,21 +15,33 @@ export class ProductService {
     //our code to communicate with server will be here
   }
 
-  retrieveFromServer(): Product[] {
+  retrieveFromServer(url): Observable<Product[]> {
     //our code to communicate with server will be here
-    let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet';
+    // let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet2';
     // alert('hi');
 
-    this.http.get<Product[]>(url).subscribe(
-      data => {
-        this.products = data;
-      });
-    return this.products;
+    return this.http.get<Product[]>(url);
+    
 
     // let prod1 = new Product(1,"amar",12000,3);
     // let prod2 = new Product(2,"efg",1350,7);
     // let prod3 = new Product(3,"ijk",12553,2);
     // let products = [prod1, prod2, prod3];
     // return products;
+  }
+  retrieveFromServerNext(url): Observable<Product[]> {
+    //our code to communicate with server will be here
+   // let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet';
+    // alert('hi');
+
+    return this.http.get<Product[]>(url);
+    
+  }retrieveFromServerPrev(url): Observable<Product[]> {
+    //our code to communicate with server will be here
+    //let url = 'http://localhost:8081/pagination-ajax/ProductControllerServlet';
+    // alert('hi');
+
+    return this.http.get<Product[]>(url);
+    
   }
 }
