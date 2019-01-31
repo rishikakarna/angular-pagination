@@ -1,0 +1,27 @@
+<div class="panel">
+  <div class="panel-heading">{{title}}</div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- *ngfor:structural directive---"{{}}" interpolation -->
+          <tr *ngFor="let pro of products">
+            <td>{{pro.id}}</td>
+            <td>{{pro.name}}</td>
+            <td>{{pro.price | currency}}</td>
+            <td>{{pro.quantity}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="loadProd()">click here</button>
+    </div>
+  </div>
+</div>
